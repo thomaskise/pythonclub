@@ -29,8 +29,8 @@ class Minutes(models.Model):
         verbose_name_plural='minutes'
 
 class Resource(models.Model):
-    resoursename=models.CharField(max_length=255)
-    resoursetype=models.CharField(max_length=255)
+    resourcename=models.CharField(max_length=255)
+    resourcetype=models.CharField(max_length=255)
     resourceurl=models.URLField(null=True, blank=True)
     resouceentrydate=models.DateField()
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
