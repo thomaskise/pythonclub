@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ meet.meetingtitle }}</h2>
+<p>Agenda: {{ meet.meetingagenda }}</p>
+<p>Start Time: {{ meet.meetingtime }}</p>
+<p>Meeting Manager: {{ user.username }}</p>
+{% for m in minutes %}
+<p>Minutes: {{ m.meetingminutes }}</p>
+{% endfor %}
+<!--    <p>Product Type: {{ prod.producttype }} </p>
+<p>Entry Date: {{ prod.productentrydate }}</p>
+<p>URL: {{ prod.producturl }}</p>
+<p>Description: {{ prod.productdescription }}</p>
+<p>Price: {{ prod.productprice }}</p>
+<p>Member discount: {{ discount }}</p>
+<p>No. Of Reviews: {{ reviews }}</p> -->
+
+{% endblock %}

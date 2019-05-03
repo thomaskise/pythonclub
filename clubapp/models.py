@@ -9,8 +9,9 @@ class Meeting(models.Model):
     meetinglocation=models.CharField(max_length=255)
     meetingagenda=models.TextField()
 
-    def __str__(self):
-        return self.meetingtitle
+
+    def get_ordering(self, request):
+        return self.meetingdate
     
     class Meta:
         db_table='meeting'
@@ -19,10 +20,10 @@ class Meeting(models.Model):
 class Minutes(models.Model):
     meeting=models.ForeignKey(Meeting, on_delete=models.DO_NOTHING)
     user=models.ManyToManyField(User)
-    meetingagenda=models.TextField()
+    meetingminutes=models.TextField()
 
     def __str__(self):
-        return self.meetingagenda
+        return self.meetingminutes
     
     class Meta:
         db_table='minutes'
