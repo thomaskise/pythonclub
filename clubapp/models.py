@@ -44,7 +44,6 @@ class ResourceType(models.Model):
 class Resource(models.Model):
     resourcename=models.CharField(max_length=255)
     resourcetype=models.ForeignKey(ResourceType, on_delete=models.DO_NOTHING)
-    # resourcetype=models.CharField(max_length=255)
     resourceurl=models.URLField(null=True, blank=True)
     resouceentrydate=models.DateField()
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -66,7 +65,7 @@ class Event(models.Model):
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.eventtile
+        return self.eventtitle
     
     class Meta:
         db_table='event'
