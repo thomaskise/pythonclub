@@ -102,3 +102,70 @@ class ResourceMoreTest(TestCase):
       resource = self.setup()
       self.assertEqual(self.resource.resouceentrydate, '2019-05-08')
 
+#form tests
+class NewMeetingsFormTest(TestCase):
+   def test_form_new_meeting(self):
+      title = 'meeting title test data'
+      date = '2019-05-31'
+      time = '10:00:00'
+      location = 'tba'
+      agenda = 'agenda'
+      form_data = {'meetingtitle': title, 'meetingdate': date, 'meetingtime': time,
+      'meetinglocation': location, 'meetingagenda': agenda}
+      form = MeetingForm(data=form_data)
+      self.assertTrue(form.is_valid())
+
+class Setup_Class(TestCase):
+
+   def setUp(self):
+      self.u=User.objects.create(username='myuser')
+      self.type = ResourceType(typename = 'Video')
+      self.resource = Resource.objects.create(
+      resourcename="This is the resource name", 
+      resourcetype="self.type", resourceentrydate="2019-05-16", 
+      user="me", resourcedescription="description")
+      self.resource1=Resource.objects.create(resource=self.resource )
+      self.resource1.user.add(self.u)
+
+class Resource_Form_Test(TestCase):
+   def setUp(self):
+      self.u=User.objects.create(username='myuser')
+      self.type = ResourceType(typename = 'Video')
+      self.resource = Resource.objects.create(
+      resourcename="This is the resource name", 
+      resourcetype="self.type", resourceentrydate="2019-05-16", 
+      user="me", resourcedescription="description")
+      self.resource1=Resource.objects.create(resource=self.resource )
+      self.resource1.user.add(self.u)
+   # Valid Form Data
+   def test_ResourceForm_valid(self):
+      form = ResourceForm(formdata=self.resource1)
+      self.assertTrue(form.is_valid())
+
+class Resource_Form_Test(TestCase):
+   def setUp(self):
+      self.u=User.objects.create(username='duck2000')
+      self.type = ResourceType.objects.create(typename = 'Video')
+      resourcename="Resource Name"
+      resourcetype=self.type
+      resourceurl='https://www.pythonforbeginners.com/concatenation/string-concatenation-and-formatting-in-python'
+      resouceentrydate=datetime.date(2020, 5, 17)
+      user=self.u
+      resourcedescription="description"
+      self.form_data = {'resourcename':resourcename,
+      'resourcetype':self.type,
+      'resourceurl':resourceurl,
+      'resouceentrydate':resouceentrydate,
+      'user':self.u,'resourcedescription':resourcedescription}
+      #print(resourcename)
+      #print(resourcetype)
+      #print(resourceurl)
+      #print(resouceentrydate)
+      #print(user)
+      #print(resourcedescription)
+
+   # Valid Form Data
+   def test_ResourceForm_valid(self):
+      form = ResourceForm(data=self.form_data)
+      #print(self.form_data)
+      self.assertTrue(form.is_valid)
